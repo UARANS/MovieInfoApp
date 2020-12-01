@@ -1,4 +1,3 @@
 # MovieInfoApp
-Asp.Net Core Film App
 
-update-database
+1. Update-Database

@@ -1,5 +1,3 @@
 # MovieInfoApp
 
-1. Update-Database
-
-2. Restore backup
+The initial data is in the backup file MovieInfoDB.bak

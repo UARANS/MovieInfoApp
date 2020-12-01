@@ -1,0 +1,45 @@
+﻿@model PageViewModel
+
+@if (Model.TotalPages > 1)
+{
+    int currentPage = Model.PageNumber;
+    int totalPages = Model.TotalPages;
+    int startIndex = Math.Max(currentPage - 5, 1);
+    int finishIndex = Math.Min(currentPage + 5, totalPages);
+    string disabledPrev = !Model.HasPreviousPage ? "disabled" : "";
+    string disabledNext = !Model.HasNextPage ? "disabled" : "";
+
+    <nav aria-label="pagination">
+        <ul class="pagination justify-content-center">
+
+            <li class="page-item @disabledPrev">
+                <a asp-action="Index" asp-route-page="@(currentPage - 1)" class="page-link" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Назад</span>
+                </a>
+            </li>
+
+            @for (int i = startIndex; i <= finishIndex; i++)
+            {
+                if (currentPage == i)
+                {
+                    <li class="page-item active">
+                        <a class="page-link" href="#">@i <span class="sr-only">(current)</span></a>
+                    </li>
+                }
+                else
+                {
+                    <li class="page-item"><a asp-action="Index" asp-route-page="@i" class="page-link">@i</a></li>
+                }
+            }
+
+            <li class="page-item @disabledNext">
+                <a asp-action="Index" asp-route-page="@(currentPage + 1)" class="page-link" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </li>
+
+        </ul>
+    </nav>
+}

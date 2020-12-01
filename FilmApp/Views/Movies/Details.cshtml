@@ -1,0 +1,30 @@
+﻿@model EFDataAccessLibrary.Models.Movie
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div>
+    <div class="row">
+        <div class="col-md-4">
+            <img src="@Url.Content(Model.Poster?.Path)" class="img-thumbnail" alt="poster" />
+        </div>
+        <div class="col-md-8">
+            <h2>@Model.Title</h2>
+            <ul class="list-group">
+                <li class="list-group-item"><strong>Год выпуска</strong> @Model.Year</li>
+                <li class="list-group-item"><strong>Режиссер</strong> @Model.Director</li>
+                <li class="list-group-item"><strong>Описание</strong> @Model.Plot</li>
+            </ul>
+
+            <hr />
+            <a asp-action="Index" class="btn btn-info">Назад</a>
+           
+            @if (Model.User.UserName.Equals(User.Identity.Name))
+            {
+                <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Изменить</a>
+                <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">Удалить</a>
+            }
+        </div>
+    </div>
+</div>

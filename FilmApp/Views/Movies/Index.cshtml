@@ -1,0 +1,32 @@
+﻿@model IndexViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<p>
+    <a asp-action="Create" class="btn btn-link">Создать новый фильм</a>
+</p>
+
+<div class="row movies">
+    @foreach (var item in Model.Movies)
+    {
+        <div class="col-md-3">
+            <div class="card text-center mb-3">
+                <img src="@Url.Content(item.Poster?.Path)" alt="poster" class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        @item.Title
+                        <span class="secondaryInfo">(@item.Year)</span>
+                    </h5>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary">Подробно</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<br />
+
+@(await Component.InvokeAsync<Pagination>(Model.PageViewModel))
+

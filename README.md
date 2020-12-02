@@ -1,3 +1,3 @@
 # MovieInfoApp
 
-1. Update-Database
+The initial data is in the backup file MovieInfoDB.bak

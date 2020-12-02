@@ -12,6 +12,8 @@ using EFDataAccessLibrary.Interfaces;
 using EFDataAccessLibrary.Models;
 using AutoMapper;
 using Microsoft.Extensions.Configuration;
+using System.Text.Encodings.Web;
+using System.Net;
 
 namespace FilmApp.Controllers
 {
@@ -82,11 +84,11 @@ namespace FilmApp.Controllers
                 if (user != null)
                 {
                     string path = CreatePosterPath(fvm.UploadedFile);
-                    await SavePosterAsync(fvm.UploadedFile, path);
+                    await SavePosterAsync(fvm.UploadedFile, path);                   
 
                     fvm.Poster = new PosterViewModel
                     {
-                        Name = fvm.UploadedFile.FileName,
+                        Name = WebUtility.HtmlEncode(fvm.UploadedFile.FileName),
                         Path = path,
                     };
 
@@ -145,7 +147,7 @@ namespace FilmApp.Controllers
                     if(movie.Poster is null) movie.Poster = new Poster();
                     else DeleteFile(movie.Poster.Path);
 
-                    movie.Poster.Name = fvm.UploadedFile.FileName;
+                    movie.Poster.Name = WebUtility.HtmlEncode(fvm.UploadedFile.FileName);
                     movie.Poster.Path = path;
                 }
 

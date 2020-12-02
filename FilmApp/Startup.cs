@@ -17,6 +17,8 @@ using EFDataAccessLibrary.Repositories;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using FilmApp.Services;
 using AutoMapper;
+using System.Text.Encodings.Web;
+using System.Text.Unicode;
 
 namespace FilmApp
 {

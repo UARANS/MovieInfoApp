@@ -12,7 +12,6 @@ using EFDataAccessLibrary.Interfaces;
 using EFDataAccessLibrary.Models;
 using AutoMapper;
 using Microsoft.Extensions.Configuration;
-using System.Text.Encodings.Web;
 using System.Net;
 
 namespace FilmApp.Controllers
